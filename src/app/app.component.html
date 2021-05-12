@@ -2,7 +2,7 @@
 <button class="btn" (click)="decrease()" [disabled]="!isGreaterZero">-</button>
 <p class="fz-60"
 >
-  Счетчик: {{counter}}
+  Счетчик: {{count$| async}}
 </p>
 <br>
 <button class="btn" (click)="resetCount()" [disabled]="!isGreaterZero">reset</button>
