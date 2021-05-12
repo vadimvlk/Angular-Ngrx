@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular';
+
+  counter: number = 0;
+
+  get isGreaterZero (): boolean {
+    return this.counter> 0
+  }
+
+  increase() {
+    this.counter++;
+  }
+
+  decrease() {
+    this.counter--;
+  }
+
+  resetCount() {
+    this.counter = 0;
+  }
 }

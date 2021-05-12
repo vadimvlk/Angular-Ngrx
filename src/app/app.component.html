@@ -1,0 +1,14 @@
+<button class="btn" (click)="increase()">+</button>
+<button class="btn" (click)="decrease()" [disabled]="!isGreaterZero">-</button>
+<p class="fz-60"
+>
+  Счетчик: {{counter}}
+</p>
+<br>
+<button class="btn" (click)="resetCount()" [disabled]="!isGreaterZero">reset</button>
+
+
+<p class="fz-60"
+>
+  Обновлен :
+</p>
