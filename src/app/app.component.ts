@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {counterSelector, decrease, increase, reset} from "./reducers/counter";
+import {changeUpdatedAt, counterSelector, decrease, increase, reset, setUpdatedAt} from "./reducers/counter";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -11,35 +13,27 @@ export class AppComponent {
 
 
   constructor(private _store: Store) {
-    this.updatedAt = 0;
+
   }
 
-  updatedAt: number;
-
-  count$ = this._store.select(counterSelector)
-
-
-  get isGreaterZero(): boolean {
-    let val = false;
-    this.count$.subscribe(x => val = x > 0)
-    return val;
-  }
-
+  updatedAt$: Observable<any> = this._store.select(changeUpdatedAt);
+  count$: Observable<number> = this._store.select(counterSelector)
+  isGreaterZero$: Observable<boolean> = this.count$.pipe(
+    map(x => x <= 0));
   increase() {
     this._store.dispatch(increase());
 
-    this.updatedAt = Date.now();
   }
 
   decrease() {
     this._store.dispatch(decrease());
 
-    this.updatedAt = Date.now();
+
   }
 
   resetCount() {
     this._store.dispatch(reset());
 
-    this.updatedAt = Date.now();
+
   }
 }

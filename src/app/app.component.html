@@ -1,13 +1,13 @@
 <button class="btn" (click)="increase()">+</button>
-<button class="btn" (click)="decrease()" [disabled]="!isGreaterZero">-</button>
+<button class="btn" (click)="decrease()"  [disabled]="isGreaterZero$ | async">-</button>
 <p class="fz-60"
 >
   Счетчик: {{count$| async}}
 </p>
 <br>
-<button class="btn" (click)="resetCount()" [disabled]="!isGreaterZero">reset</button>
+<button class="btn" (click)="resetCount()" [disabled]="isGreaterZero$ | async">reset</button>
 
-<p *ngIf="updatedAt" class="fz-60"
+<p *ngIf="updatedAt$| async" class="fz-60"
 >
-  Обновлен {{updatedAt | date:"HH:mm:ss" }}
+  Обновлен {{updatedAt$| async | date:"HH:mm:ss" }}
 </p>
