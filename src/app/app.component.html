@@ -7,8 +7,7 @@
 <br>
 <button class="btn" (click)="resetCount()" [disabled]="!isGreaterZero">reset</button>
 
-
-<p class="fz-60"
+<p *ngIf="updatedAt" class="fz-60"
 >
-  Обновлен :
+  Обновлен {{updatedAt | date:"HH:mm:ss" }}
 </p>
